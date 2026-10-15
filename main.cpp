@@ -1,3 +1,7 @@
+//Eduardo Avila
+//COMSC - 210 - 5293
+//Lab 23 - Goat Manager 3001
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
