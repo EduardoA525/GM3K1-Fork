@@ -58,24 +58,21 @@ int main() {
         }
 
     } while (choice != 4);
-
-
-
+    
     return 0;
 }
 
 int main_menu(){
     int choice;
 
-    cout << "*** GOAT MANAGER 3001 ***" << endl;
+    cout << "\n*** GOAT MANAGER 3001 ***" << endl;
     cout << "[1] Add a goat" << endl;
     cout << "[2] Delete a goat" << endl;
     cout << "[3] List goats" << endl;
     cout << "[4] Quit" << endl;
     cout << "Choice --> ";
 
-    cin >> choice;
-
+    //edited so key letter input edge case is taken into account
     while (!(cin >> choice) || choice < 1 || choice > 4){
         cout << "ERROR! Please choose 1-4: ";
         cin.clear();
@@ -109,10 +106,9 @@ int select_goat(list<Goat> trip){
 
     int choice;
     cout << "\nSelect goat (1- " << trip.size() << "): ";
-    cin >> choice;
 
     while (!(cin >> choice) || choice < 1 || choice > trip.size()){
-        cout << "\nERROR! Please choose 1- " << trip.size()
+        cout << "\nERROR! Please choose 1-" << trip.size()
              << ": ";
 
         cin.clear();
@@ -151,6 +147,7 @@ void display_trip(list<Goat> trip){
 
     int goatNumber = 1;
 
+    cout << endl;
     for (Goat goat : trip) {
         cout << "[" << goatNumber << "] " << goat.get_name()
              << " (" << goat.get_age() << ", " << goat.get_color()
