@@ -42,14 +42,17 @@ int main() {
         switch (choice) {
             case 1:
                 cout << "adding goat" << endl;
+                //add_goat();
                 break;
             
             case 2:
                 cout << "deleting goat" << endl;
+                //delete_goat();
                 break;
             
             case 3:
                 cout << "listing goats" << endl;
+                //display_trip();
                 break;
             
             case 4:
@@ -89,8 +92,19 @@ void add_goat(list<Goat> &trip, string names[], string colors[]){
 }
 
 int select_goat(list<Goat> trip){
+    //empty check first
+    if (trip.empty()){
+        cout << "Trip is empty. No goats here buddy." << endl;
+        return 0;
+    }
 
-    return;
+    //display submenu to select from
+    display_trip(trip);
+
+    int choice;
+    cout << "Select goat (1- " << trip.size() << "): ";
+    cin >> choice;
+
 }
 
 void delete_goat(list<Goat> &trip){
@@ -99,6 +113,19 @@ void delete_goat(list<Goat> &trip){
 }
 
 void display_trip(list<Goat> trip){
+    //empty check first
+    if (trip.empty()){
+        cout << "Trip is empty." << endl;
+        return;
+    }
 
-    return;
+    int goatNumber = 1;
+
+    for (Goat goat : trip) {
+        cout << "[" << goatNumber << "]" << goat.get_name()
+             << " (" << goat.get_age() << ", " << goat.get_color()
+             << ")" << endl;
+        
+        goatNumber++;
+    }
 }
