@@ -21,6 +21,9 @@ int main() {
     srand(time(0));
     bool again;
 
+    list<Goat> trip;
+    int choice;
+
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
@@ -33,26 +36,23 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    //main menu testing
-    int choice;
-
     do {
         choice = main_menu();
 
         switch (choice) {
             case 1:
                 cout << "adding goat" << endl;
-                //add_goat();
+                add_goat(trip, names, colors);
                 break;
             
             case 2:
                 cout << "deleting goat" << endl;
-                //delete_goat();
+                delete_goat(trip);
                 break;
             
             case 3:
                 cout << "listing goats" << endl;
-                //display_trip();
+                display_trip(trip);
                 break;
             
             case 4:
@@ -87,8 +87,16 @@ int main_menu(){
 }
 
 void add_goat(list<Goat> &trip, string names[], string colors[]){
+    string name = names[rand() % SZ_NAMES];
+    string color = colors[rand() % SZ_COLORS];
 
-    return;
+    int age = rand() % (MAX_AGE + 1);
+
+    Goat newGoat(name, age, color);
+    trip.push_back(newGoat);
+
+    cout << "New Goat: " << name 
+         << " successfully added. Yippee!" << endl; 
 }
 
 int select_goat(list<Goat> trip){
@@ -105,11 +113,33 @@ int select_goat(list<Goat> trip){
     cout << "Select goat (1- " << trip.size() << "): ";
     cin >> choice;
 
+    while (choice < 1 || choice > trip.size()){
+        cout << "ERROR! Please choose 1- " << trip.size()
+             << ": ";
+        cin >> choice;
+    }
+
+    return choice;
 }
 
 void delete_goat(list<Goat> &trip){
+    //empty check first
+    if (trip.empty()){
+        cout << "Trip empty. Goats ran away." << endl;
+        return;
+    }
 
-    return;
+    int choice = select_goat(trip);
+
+    list<Goat>::iterator it = trip.begin();
+
+    for (int i = 1; i < choice; i++){
+        it++;
+    }
+
+    trip.erase(it);
+    
+    cout << "Goat is GONE. Deletion success!" << endl;
 }
 
 void display_trip(list<Goat> trip){
