@@ -40,9 +40,21 @@ int main() {
         choice = main_menu();
 
         switch (choice) {
-
-
-            break;
+            case 1:
+                cout << "adding goat" << endl;
+                break;
+            
+            case 2:
+                cout << "deleting goat" << endl;
+                break;
+            
+            case 3:
+                cout << "listing goats" << endl;
+                break;
+            
+            case 4:
+                cout << "Exiting Program..." << endl;
+                break;
         }
 
     } while (choice != 4);
@@ -68,8 +80,25 @@ int main_menu(){
         cout << "ERROR! Please choose 1-4: ";
         cin >> choice;
     }
-
     return choice;
-
 }
 
+void add_goat(list<Goat> &trip, string names[], string colors[]){
+
+    return;
+}
+
+int select_goat(list<Goat> trip){
+
+    return;
+}
+
+void delete_goat(list<Goat> &trip){
+
+    return;
+}
+
+void display_trip(list<Goat> trip){
+
+    return;
+}
