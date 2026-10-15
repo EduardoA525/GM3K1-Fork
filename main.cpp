@@ -41,17 +41,14 @@ int main() {
 
         switch (choice) {
             case 1:
-                cout << "adding goat" << endl;
                 add_goat(trip, names, colors);
                 break;
             
             case 2:
-                cout << "deleting goat" << endl;
                 delete_goat(trip);
                 break;
             
             case 3:
-                cout << "listing goats" << endl;
                 display_trip(trip);
                 break;
             
@@ -79,9 +76,10 @@ int main_menu(){
 
     cin >> choice;
 
-    while (choice < 1 || choice > 4){
+    while (!(cin >> choice) || choice < 1 || choice > 4){
         cout << "ERROR! Please choose 1-4: ";
-        cin >> choice;
+        cin.clear();
+        cin.ignore(10000, '\n');
     }
     return choice;
 }
@@ -95,14 +93,14 @@ void add_goat(list<Goat> &trip, string names[], string colors[]){
     Goat newGoat(name, age, color);
     trip.push_back(newGoat);
 
-    cout << "New Goat: " << name 
+    cout << "\nNew Goat: " << name 
          << " successfully added. Yippee!" << endl; 
 }
 
 int select_goat(list<Goat> trip){
     //empty check first
     if (trip.empty()){
-        cout << "Trip is empty. No goats here buddy." << endl;
+        cout << "\nTrip is empty. No goats here buddy." << endl;
         return 0;
     }
 
@@ -110,13 +108,15 @@ int select_goat(list<Goat> trip){
     display_trip(trip);
 
     int choice;
-    cout << "Select goat (1- " << trip.size() << "): ";
+    cout << "\nSelect goat (1- " << trip.size() << "): ";
     cin >> choice;
 
-    while (choice < 1 || choice > trip.size()){
-        cout << "ERROR! Please choose 1- " << trip.size()
+    while (!(cin >> choice) || choice < 1 || choice > trip.size()){
+        cout << "\nERROR! Please choose 1- " << trip.size()
              << ": ";
-        cin >> choice;
+
+        cin.clear();
+        cin.ignore(10000, '\n');
     }
 
     return choice;
@@ -125,7 +125,7 @@ int select_goat(list<Goat> trip){
 void delete_goat(list<Goat> &trip){
     //empty check first
     if (trip.empty()){
-        cout << "Trip empty. Goats ran away." << endl;
+        cout << "\nTrip empty. Goats ran away." << endl;
         return;
     }
 
@@ -139,20 +139,20 @@ void delete_goat(list<Goat> &trip){
 
     trip.erase(it);
     
-    cout << "Goat is GONE. Deletion success!" << endl;
+    cout << "\nGoat is GONE. Deletion success!" << endl;
 }
 
 void display_trip(list<Goat> trip){
     //empty check first
     if (trip.empty()){
-        cout << "Trip is empty." << endl;
+        cout << "\nTrip is empty." << endl;
         return;
     }
 
     int goatNumber = 1;
 
     for (Goat goat : trip) {
-        cout << "[" << goatNumber << "]" << goat.get_name()
+        cout << "[" << goatNumber << "] " << goat.get_name()
              << " (" << goat.get_age() << ", " << goat.get_color()
              << ")" << endl;
         
